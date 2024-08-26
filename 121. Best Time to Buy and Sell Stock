@@ -1,0 +1,38 @@
+# 121. Best Time to Buy and Sell Stock
+
+class Solution(object):
+    def check(self,lister):
+        for x in range(len(lister)-1):
+            if lister[x] < lister[x+1]:
+                return True
+        print("failed")        
+        return False
+    def maxProfit(self, prices):
+        """
+        :type prices: List[int]
+        :rtype: int
+        find lowest and find highest after the lowest 
+        track max profit 
+        return max fucntion 
+        """
+        minVal = max(prices)
+        maxVal = 0
+        val = 0 
+        oldVal = 0
+        x = 0
+        y = 0 
+        temp = 0
+        if(self.check(prices)):
+            while x < len(prices)-1: 
+                while y < len(prices)-1:
+                    y += 1
+                    val = prices[y] - prices[x] 
+                    if val > oldVal:
+                        oldVal = val  
+                temp += 1
+                y = temp
+                x += 1
+            return oldVal
+        else: 
+            return 0            
+    
